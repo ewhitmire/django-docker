@@ -4,7 +4,7 @@ services:
     environment:
       DEBUG: 'true'
     volumes:
-      - /app
+      - ./web:/app
   nginx:
     ports:
       - "7000:80"

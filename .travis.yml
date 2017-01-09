@@ -5,6 +5,6 @@ services:
   - docker
 install:
   - docker-compose build
-  - docker-compose up
+  - docker-compose run --rm web python manage.py migrate
 script:
-  - docker ps
+  - docker-compose run --rm web python manage.py test
