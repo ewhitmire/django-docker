@@ -7,10 +7,11 @@ host="$1"
 shift
 cmd="$@"
 
-export PGPASSWORD=$POSTGRES_PASSWORD
-
-until psql -h "$host" -U "$POSTGRES_USER" -c '\l' $POSTGRES_DB; do
-  >&2 echo "Postgres is unavailable - sleeping"
+# Wait for the db service to be ready before continuing
+echo "waiting for db..."
+while ! nc -w 1 -z $DB_HOST $DB_PORT 2>/dev/null;
+do
+  echo -n .
   sleep 1
 done
 
