@@ -17,7 +17,7 @@ services:
     env_file:
       - docker/web.env
       - docker/db.env
-    command: /app/web_entrypoint.sh
+    command: ["/app/wait_for_postgres.sh", "db", "/app/web_entrypoint.sh"]
     volumes:
       - /app/static
     links:
