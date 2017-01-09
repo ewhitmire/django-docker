@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    environment:
+      DEBUG: 'true'
+    volumes:
+      - /app
+  nginx:
+    ports:
+      - "7000:80"
